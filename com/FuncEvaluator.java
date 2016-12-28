@@ -18,7 +18,8 @@ import javassist.gluonj.Reviser;
 @Require(BasicEvaluator.class)
 @Reviser
 public class FuncEvaluator {
-    @Reviser public static interface EnvEx extends Environment {
+    @Reviser
+    public static interface EnvEx extends Environment {
         void putNew(String name, Object value);
         Environment where(String name);
         void setOuter(Environment e);

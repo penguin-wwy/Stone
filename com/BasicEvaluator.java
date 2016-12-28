@@ -16,6 +16,7 @@ import com.Lexer.StoneException;
 import com.Lexer.Token;
 
 import java.util.List;
+import java.util.Objects;
 
 import javassist.gluonj.Reviser;
 
@@ -37,6 +38,9 @@ public class BasicEvaluator {
             super(c);
         }
         public Object eval(Environment env) {
+            if (this.numChildren() == 0) {
+                return null;
+            }
             throw new StoneException("cannot eval: " + toString(), this);
         }
     }
@@ -166,9 +170,10 @@ public class BasicEvaluator {
         }
         public Object eval(Environment env) {
             Object result = 0;
+            Object tmp = 0;
             for (ASTree t : this.getChildren()) {
                 if (!(t instanceof NullStmnt))
-                    result = ((ASTreeEx)t).eval(env);
+                    result = (tmp = ((ASTreeEx)t).eval(env)) != null ? tmp : result;
             }
             return result;
         }

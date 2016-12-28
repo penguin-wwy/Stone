@@ -16,6 +16,7 @@ public class FuncParser extends BasicParser {
     Parser postfix = Parser.rule().sep("(").maybe(args).sep(")");
 
     public FuncParser() {
+        super();
         reserved.add(")");
         primary.repeat(postfix);
         simple.option(args);
