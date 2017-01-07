@@ -86,4 +86,20 @@ print (currentTime() - t + " msec")
     public static void runNative(String[] args) throws Throwable {
         Loader.run(NativeInterpreter.class, args, NativeEvaluator.class);
     }
+
+/*
+class Position {
+    x = y = 0
+    def move(nx, ny) {
+        x = nx; y = ny
+    }
+}
+p = Position.new
+p.move(3, 4)
+p.x = 10
+print p.x + p.y
+*/
+    public static void runClass(String[] args) throws Throwable {
+        Loader.run(ClassInterpreter.class, args, ClassEvaluator.class, NativeEvaluator.class, FuncEvaluator.class);
+    }
 }
